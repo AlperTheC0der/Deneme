@@ -1,0 +1,130 @@
+<mvc:View
+    controllerName="com.ntt.sm.userproject1.controller.Worklist"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:semantic="sap.f.semantic">
+
+    <semantic:SemanticPage
+        id="page"
+        headerPinnable="false"
+        toggleHeaderOnTitleClick="false">
+
+        <semantic:titleHeading>
+            <Title
+                text="{i18n>worklistTitle}"
+                level="H2"/>
+        </semantic:titleHeading>
+
+        <semantic:content>
+            <Table
+                mode = "SingleSelectLeft"
+                id="table"
+                width="auto"
+                items="{
+                    path: '/UserInformationSet',
+                    sorter: {
+                        path: 'Username',
+                        descending: false
+                    }
+                }"
+                noDataText="{worklistView>/tableNoDataText}"
+                busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+                growing="true"
+                growingScrollToLoad="true"
+                updateFinished=".onUpdateFinished">
+
+                <headerToolbar>
+                    <OverflowToolbar>
+                                        
+                        <Title
+                            id="tableHeader"
+                            text="{worklistView>/worklistTableTitle}"
+                            level="H3"/>
+                        <ToolbarSpacer />
+                        <SearchField
+                            id="searchField"
+                            tooltip="{i18n>worklistSearchTooltip}"
+                            search=".onSearch">
+                            <layoutData>
+                                <OverflowToolbarLayoutData
+                                    maxWidth="200px"
+                                    priority="NeverOverflow"/>
+                            </layoutData>
+                        </SearchField>
+                        
+                        <Button text="{i18n>bttnCreate}"
+                                icon="sap-icon://create-form"
+                                press="onShowCreateDialog"/>
+                        <Button text="{i18n>bttnDelete}"
+                                icon="sap-icon://delete"
+                                press="onShowDeleteDialog"/>
+                        <Button text="{i18n>bttnUpdate}"
+                                icon="sap-icon://drill-up"
+                                press="onShowUpdateDialog"/>
+                        <Button
+											id="deleteUserButton"
+											icon="sap-icon://delete"
+											tooltip="{i18n>deleteButtonText}"
+											press=".onSelectDelete">
+											<layoutData>
+												<OverflowToolbarLayoutData priority="NeverOverflow"/>
+											</layoutData>
+										</Button>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column id="nameColumn" >
+                        <Text text="{i18n>tableNameColumnTitle}"/>
+                    </Column>
+                    <Column id="unitNumberColumn" >
+                        <Text text="{i18n>tableColumnNames}"/>
+                    </Column>
+                    <Column id="unitNumberColumn1" >
+                        <Text text="{i18n>tableColumnSurnames}"/>
+                    </Column>
+                    <Column id="unitNumberColumn2" >
+                        <Text text="{i18n>tableColumnBirthDays}"/>
+                    </Column>
+                    <Column id="unitNumberColumn3" >
+                        <Text text="{i18n>tableColumnMail}"/>
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem
+                        
+                        type="Navigation"
+                        press=".onPress">
+                        <cells>
+                            <ObjectIdentifier
+                                title="{Username}"
+                                />
+                            
+                            <ObjectIdentifier
+                                title="{Name}"
+                                />
+                            
+                            <ObjectIdentifier
+                                title="{Surname}"
+                                />
+                            
+                            <ObjectIdentifier
+                                title="{path: 'Birthdate', type:'sap.ui.model.type.Date', formatOptions: { UTC:true } }"
+                                                               
+                                />
+                                <ObjectIdentifier
+                                title="{Mail}"
+                                />
+                            
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </semantic:content>
+
+        
+
+    </semantic:SemanticPage>
+
+</mvc:View>
