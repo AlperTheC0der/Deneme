@@ -14,7 +14,8 @@ sap.ui.define([
         onLiveChange: function (oEvent) {
             var sNewValue = oEvent.getParameter("value");
             this.byId("getValue").setText(sNewValue);
-        }
+            //test
+        } 
         ,
 
         onSelectDelete: function () {
